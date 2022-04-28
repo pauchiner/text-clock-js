@@ -14,6 +14,11 @@ body {
   background: #1f1f1f;
 }
 
+.words {
+  color: #444;
+  padding: 15px;
+}
+
 .words-container {
   align-items: center;
   display: grid;
@@ -27,16 +32,24 @@ body {
   justify-content: space-between;
 }
 
-.words {
-  padding: 15px;
-  color: #fff;
-}
-
-
 /* Animations */
 
 @keyframes background-anim {
   0% { background-position:67% 0%; }
   50% { background-position:34% 100%; }
   100% { background-position:67% 0%; }
+}
+
+/* Responsive  Design */
+
+@media (min-width: 100px) {
+  * {
+    font: 600 25px "Montserrat";
+  }
+}
+
+@media (min-width: 500px) {
+  * {
+    font: 600 35px "Montserrat";
+  }
 }
