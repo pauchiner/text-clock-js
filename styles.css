@@ -1,0 +1,42 @@
+* {
+  font: 600 35px "Montserrat";
+  user-select: none;
+}
+
+html {
+  align-items: center;
+  display: grid;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+body {
+  background: #1f1f1f;
+}
+
+.words-container {
+  align-items: center;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.words-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.words {
+  padding: 15px;
+  color: #fff;
+}
+
+
+/* Animations */
+
+@keyframes background-anim {
+  0% { background-position:67% 0%; }
+  50% { background-position:34% 100%; }
+  100% { background-position:67% 0%; }
+}
