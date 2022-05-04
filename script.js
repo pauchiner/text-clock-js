@@ -1,14 +1,17 @@
 class Clock {
-  constructor(words) {
+  constructor(clockContainer, words) {
+    this.container = clockContainer;
     this.words = words;
   }
 
   show(element) {
-    element.style.color = '#fff';
+    element.style.transition = 'opacity 0.5s ease-in-out';
+    element.style.opacity = 1;
   }
 
   hide(element) {
-    element.style.color = '#444';
+    element.style.transition = 'opacity 0.5s ease-in-out';
+    element.style.opacity = 0.3;
   }
 
   getDate() {
@@ -20,61 +23,111 @@ class Clock {
     //Show "IT'S" value always.
     data[0] = true;
     //Set the words states with minutes.
-    if(minutes > 0 && minutes < 5) {
-      //O'Clock
+    if(minutes >= 0 && minutes < 5) {
+      //O'Clock.
       data[21] = true;
     }
 
-    if(minutes > 5 && minutes < 15) {
+    if(minutes >= 5 && minutes < 10) {
       //Five.
       data[5] = true;
+      //Minutes.
+      data[6] = true;
+      //Past.
+      data[8] = true;
+    }
+
+    if(minutes >= 10 && minutes < 15) {
+      //Ten.
+      data[2] = true;
       //Minutes
       data[6] = true;
       //Past.
       data[8] = true;
     }
 
-    if(minutes > 15 && minutes < 30) {
+    if(minutes >= 15 && minutes < 20) {
       //Quarter.
       data[3] = true;
       //Past.
       data[8] = true;
     }
 
-    if(minutes > 30 && minutes < 35) {
+    if(minutes >= 20 && minutes < 25) {
+      //Twenty.
+      data[4] = true;
+      //Minutes.
+      data[6] = true;
+      //Past.
+      data[8] = true;
+    }
+
+    if(minutes >= 25 && minutes < 30) {
+      //Twenty.
+      data[4] = true;
+      //Five.
+      data[5] = true;
+      //Minutes.
+      data[6] = true;
+      //Past.
+      data[8] = true;
+    }
+
+    if(minutes >= 30 && minutes < 35) {
       //Half.
       data[1] = true;
       //Past.
       data[8] = true;
     }
 
-    if(minutes > 35 && minutes < 45) {
+    if(minutes >= 35 && minutes < 40) {
       //Twenty.
       data[4] = true;
       //Five.
       data[5] = true;
-      //Minutes
+      //Minutes.
       data[6] = true;
       //To.
       data[7] = true;
     }
 
-    if(minutes > 45 && minutes < 55) {
-        //Quarter
+    if(minutes >= 40 && minutes < 45) {
+      //Twenty.
+      data[4] = true;
+      //Minutes.
+      data[6] = true;
+      //To.
+      data[7] = true;
+    }
+
+    if(minutes >= 45 && minutes < 50) {
+        //Quarter.
         data[3] = true;
         //To.
         data[7] = true;
     }
 
-    if(minutes > 55) {
-      //Five
+    if(minutes >= 50 && minutes < 55) {
+      //Ten.
+      data[2] = true;
+      //Minutes.
+      data[6] = true;
+      //To.
+      data[7] = true;
+  }
+
+    if(minutes >= 55) {
+      //Five.
       data[5] = true;
-      //Minutes
+      //Minutes.
       data[6] = true;
       //To.
       data[7] = true;
     }
-
+    //
+    if(minutes >= 35) {
+      hours++;
+    }
     //Set the words states with hours.
     switch(hours) {
       case 1:
@@ -138,6 +191,44 @@ class Clock {
     }
   }
 
+  showMenu() {
+    this.container.style.animation = 'show-clock-animation 0.3s cubic-bezier( 0.15, 0.41, 0, 1)';
+    this.container.style.animationFillMode = 'Forwards';
+    setTimeout(() => {
+      this.container.style.display = 'grid';
+    }, 300);
+  }
+
+  hideMenu() {
+    this.container.style.animation = 'hide-clock-animation 0.3s cubic-bezier(1, 0.2, 0.65, 0.9)';
+    this.container.style.animationFillMode = 'Forwards';
+    setTimeout(() => {
+      this.container.style.display = 'none';
+    }, 300);
+  }
+
+}
+
+class Settings {
+  constructor(settingsContainer) {
+    this.container = settingsContainer;
+  }
+
+  showMenu() {
+    this.container.style.animation = 'show-settings-animation 0.3s cubic-bezier( 0.15, 0.41, 0, 1 )';
+    this.container.style.animationFillMode = 'Forwards';
+    setTimeout(() => {
+      this.container.style.display = 'grid';
+    }, 300);
+  }
+
+  hideMenu() {
+    this.container.style.animation = 'hide-settings-animation 0.3s cubic-bezier(1, 0.2, 0.65, 0.9)';
+    this.container.style.animationFillMode = 'Forwards';
+    setTimeout(() => {
+      this.container.style.display = 'none';
+    }, 300);
+  }
 }
 
 /**All of the words of the document are inside of this.
@@ -147,8 +238,52 @@ class Clock {
  */
 const wordsElements = document.querySelectorAll('.words');
 
-const clock = new Clock(wordsElements);
 
-clock.setDate(clock.getDate());
-//Repeat
-setInterval(() => clock.setDate(clock.getDate()), 10000);
+
+/**this have the view/container of the clock.
+ * @type {HTMLElement}
+ */
+const clockContainer = document.querySelector('.clock-container');
+/**this have the view/container of the settings.
+ * @type {HTMLElement}
+ */
+const settingsContainer = document.querySelector('.settings-container');
+
+
+const clock = new Clock(clockContainer, wordsElements);
+const settings = new Settings(settingsContainer);
+
+
+function changeTest() {
+  setTimeout(() => {})
+  if(appState == appStates.settings) appState = appStates.clock;
+  else appState = appStates.settings;
+  console.log(appState);
+}
+
+/**This allocates all the avaliable states of the app.
+ * @type {enum} */
+const appStates = { clock: 'clock', settings: 'settings', start: 'start'};
+//Start the appStates
+let appState = appStates.start;
+
+setInterval(() => {
+  switch (appState) {
+    case appStates.start:
+      clock.showMenu();
+      setTimeout(() => { appState = appStates.clock; }, 500)
+      break;
+    case appStates.clock:
+      clock.showMenu();
+      settings.hideMenu();
+      clock.setDate(clock.getDate());
+      break;
+    case appStates.settings:
+      clock.hideMenu();
+      settings.showMenu();
+      clock.setDate(clock.getDate());
+      break;
+    default:
+      break;
+  }
+}, 100);
