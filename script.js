@@ -1,6 +1,7 @@
 class Clock {
   constructor(clockContainer, words) {
     this.container = clockContainer;
+    this.darkMode = false;
     this.words = words;
   }
 
@@ -191,45 +192,48 @@ class Clock {
     }
   }
 
-  showMenu() {
-    this.container.style.animation = 'show-clock-animation 0.3s cubic-bezier( 0.15, 0.41, 0, 1)';
-    this.container.style.animationFillMode = 'Forwards';
-    setTimeout(() => {
-      this.container.style.display = 'grid';
-    }, 300);
-  }
-
-  hideMenu() {
-    this.container.style.animation = 'hide-clock-animation 0.3s cubic-bezier(1, 0.2, 0.65, 0.9)';
-    this.container.style.animationFillMode = 'Forwards';
-    setTimeout(() => {
-      this.container.style.display = 'none';
-    }, 300);
+  setColorMode() {
+    if(this.darkMode) {
+      //Animate background.
+      document.body.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+      document.body.style.animationFillMode = 'Forwards';
+      //Animate words.
+      this.words.forEach(element => {
+        element.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+        element.style.animationFillMode = 'Forwards';
+      });
+      //Animate dark mode button.
+      document.querySelector('.dark-mode-button').style.animation = 'button-light-mode-animation 1s cubic-bezier(.27,0,.78,.97)';
+      document.querySelector('.dark-mode-button').style.animationFillMode = 'Forwards';
+      setTimeout(() => {
+        document.querySelector('#dark-icon').style.display = 'none';
+        document.querySelector('#light-icon').style.display = 'inherit';
+      }, 300);
+      this.darkMode = false;
+    }
+    else {
+      //Animate background.
+      document.body.style.animation = 'light-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+      document.body.style.animationFillMode = 'Forwards';
+      //Animate words.
+      this.words.forEach(element => {
+        element.style.animation = 'light-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+        element.style.animationFillMode = 'Forwards';
+      });
+      //Animate dark mode button.
+      document.querySelector('.dark-mode-button').style.animation = 'button-dark-mode-animation 1s cubic-bezier(.27,0,.78,.97)';
+      document.querySelector('.dark-mode-button').style.animationFillMode = 'Forwards';
+      setTimeout(() => {
+        document.querySelector('#dark-icon').style.display = 'inherit';
+        document.querySelector('#light-icon').style.display = 'none';
+      }, 300);
+      this.darkMode = true;
+    }
   }
 
 }
 
-class Settings {
-  constructor(settingsContainer) {
-    this.container = settingsContainer;
-  }
 
-  showMenu() {
-    this.container.style.animation = 'show-settings-animation 0.3s cubic-bezier( 0.15, 0.41, 0, 1 )';
-    this.container.style.animationFillMode = 'Forwards';
-    setTimeout(() => {
-      this.container.style.display = 'grid';
-    }, 300);
-  }
-
-  hideMenu() {
-    this.container.style.animation = 'hide-settings-animation 0.3s cubic-bezier(1, 0.2, 0.65, 0.9)';
-    this.container.style.animationFillMode = 'Forwards';
-    setTimeout(() => {
-      this.container.style.display = 'none';
-    }, 300);
-  }
-}
 
 /**All of the words of the document are inside of this.
  * Order: [0] it's, [1] half, [2] ten,[3] quarter, [4] twenty, [5] five,
@@ -238,52 +242,15 @@ class Settings {
  */
 const wordsElements = document.querySelectorAll('.words');
 
-
+let isDarkMode = true;
 
 /**this have the view/container of the clock.
  * @type {HTMLElement}
  */
 const clockContainer = document.querySelector('.clock-container');
-/**this have the view/container of the settings.
- * @type {HTMLElement}
- */
-const settingsContainer = document.querySelector('.settings-container');
-
 
 const clock = new Clock(clockContainer, wordsElements);
-const settings = new Settings(settingsContainer);
-
-
-function changeTest() {
-  setTimeout(() => {})
-  if(appState == appStates.settings) appState = appStates.clock;
-  else appState = appStates.settings;
-  console.log(appState);
-}
-
-/**This allocates all the avaliable states of the app.
- * @type {enum} */
-const appStates = { clock: 'clock', settings: 'settings', start: 'start'};
-//Start the appStates
-let appState = appStates.start;
 
 setInterval(() => {
-  switch (appState) {
-    case appStates.start:
-      clock.showMenu();
-      setTimeout(() => { appState = appStates.clock; }, 500)
-      break;
-    case appStates.clock:
-      clock.showMenu();
-      settings.hideMenu();
-      clock.setDate(clock.getDate());
-      break;
-    case appStates.settings:
-      clock.hideMenu();
-      settings.showMenu();
-      clock.setDate(clock.getDate());
-      break;
-    default:
-      break;
-  }
-}, 100);
+  clock.setDate(clock.getDate());
+}, 1000);
