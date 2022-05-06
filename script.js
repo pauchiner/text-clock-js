@@ -194,39 +194,45 @@ class Clock {
 
   setColorMode() {
     if(this.darkMode) {
-      //Animate background.
-      document.body.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
-      document.body.style.animationFillMode = 'Forwards';
       //Animate words.
       this.words.forEach(element => {
-        element.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+        element.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.56,0,.82,1)';
         element.style.animationFillMode = 'Forwards';
       });
       //Animate dark mode button.
-      document.querySelector('.dark-mode-button').style.animation = 'button-light-mode-animation 1s cubic-bezier(.27,0,.78,.97)';
+      document.querySelector('.dark-mode-button').style.animation = 'button-light-mode-animation 1s cubic-bezier(.56,0,.82,1)';
       document.querySelector('.dark-mode-button').style.animationFillMode = 'Forwards';
       setTimeout(() => {
         document.querySelector('#dark-icon').style.display = 'none';
         document.querySelector('#light-icon').style.display = 'inherit';
       }, 300);
+      //Animate footer.
+      var footer = document.querySelectorAll('.footer-element');
+      footer.forEach(element => {
+        element.style.animation = 'dark-mode-animation 0.3s cubic-bezier(.56,0,.82,1)';
+        element.style.animationFillMode = 'Forwards';
+      });
       this.darkMode = false;
     }
     else {
-      //Animate background.
-      document.body.style.animation = 'light-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
-      document.body.style.animationFillMode = 'Forwards';
       //Animate words.
       this.words.forEach(element => {
-        element.style.animation = 'light-mode-animation 0.3s cubic-bezier(.27,0,.78,.97)';
+        element.style.animation = 'light-mode-animation 0.3s cubic-bezier(.56,0,.82,1)';
         element.style.animationFillMode = 'Forwards';
       });
       //Animate dark mode button.
-      document.querySelector('.dark-mode-button').style.animation = 'button-dark-mode-animation 1s cubic-bezier(.27,0,.78,.97)';
+      document.querySelector('.dark-mode-button').style.animation = 'button-dark-mode-animation 1s cubic-bezier(.56,0,.82,1)';
       document.querySelector('.dark-mode-button').style.animationFillMode = 'Forwards';
       setTimeout(() => {
         document.querySelector('#dark-icon').style.display = 'inherit';
         document.querySelector('#light-icon').style.display = 'none';
       }, 300);
+      //Animate footer.
+      var footer = document.querySelectorAll('.footer-element');
+      footer.forEach(element => {
+        element.style.animation = 'light-mode-animation 0.3s cubic-bezier(.56,0,.82,1)';
+        element.style.animationFillMode = 'Forwards';
+      });
       this.darkMode = true;
     }
   }
@@ -241,8 +247,6 @@ class Clock {
  * @type {HTMLElement}
  */
 const wordsElements = document.querySelectorAll('.words');
-
-let isDarkMode = true;
 
 /**this have the view/container of the clock.
  * @type {HTMLElement}

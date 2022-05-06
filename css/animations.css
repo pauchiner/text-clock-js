@@ -1,3 +1,27 @@
+@keyframes links-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
 @keyframes button-dark-mode-animation {
   0% {
     transform: rotate(0deg);
@@ -6,10 +30,10 @@
   }
   30% {
     transform: translateX(60px) rotate(-10deg);
-    background: #1f1f1f;
   }
   50% {
     transform: rotate(2deg);
+    background: #1f1f1f;
   }
   100% {
     transform: rotate(0deg) translateX(0px);
@@ -25,10 +49,10 @@
   }
   30% {
     transform: translateX(60px) rotate(-10deg);
-    background: #f2f2f2;
   }
   50% {
     transform: rotate(2deg);
+    background: #f2f2f2;
   }
   100% {
     transform: rotate(0deg) translateX(0px);
@@ -36,25 +60,12 @@
   }
 }
 
-
-@keyframes light-mode-animation {
-  0% {
-    background-color: #1f1f1f;
-    color: #f1f1f1;
-  }
-  100% {
-    background-color: #f1f1f1;
-    color: #1f1f1f;
-  }
+@keyframes dark-mode-animation {
+  0% { color: #1f1f1f; fill: #1f1f1f; }
+  100% { color: #f1f1f1; fill: #f1f1f1; }
 }
 
-@keyframes dark-mode-animation {
-  0% {
-    background-color: #f1f1f1;
-    color: #1f1f1f;
-  }
-  100% {
-    background-color: #1f1f1f;
-    color: #f1f1f1;
-  }
+@keyframes light-mode-animation {
+  0% { color: #f1f1f1; fill: #f1f1f1; }
+  100% { color: #1f1f1f; fill: #1f1f1f; }
 }

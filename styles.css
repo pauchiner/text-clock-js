@@ -14,6 +14,11 @@ header {
 
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font: 200 28px 'Montserrat';
+  color: white;
+}
+
 html {
   align-items: center;
   display: grid;
@@ -23,7 +28,18 @@ html {
 }
 
 body {
-  background: #1f1f1f;
+  background: linear-gradient(-45deg, #512da8, #673ab7, #ff5722, #ff5252, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-animation 25s ease infinite;
+}
+
+footer {
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+  position: relative;
+  margin: 0 90px 0 90px;
 }
 
 /* Clock styles */
@@ -53,16 +69,29 @@ body {
 
 .dark-mode-button {
   border-radius: 20%;
+  box-shadow: 1px 0 7px rgba(0, 0, 0, 0.3);
   width: 40px;
   height: 40px;
   margin: 7px;
 }
 
-.dark-mode-button svg { width: 30px; height: 30px;}
+.dark-mode-button svg { width: 30px; height: 30px; }
 
 #dark-icon {
   display: none;
 }
+
+/* Footer styles */
+
+.footer-icons {
+  fill: #fff;
+  transition: fill 0.2s ease-in-out;
+}
+
+.footer-icons :hover {
+
+}
+
 
 /* Responsive  Design */
 
