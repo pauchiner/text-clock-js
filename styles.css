@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap');
 @import "./css/animations.css";
 
 * {
@@ -28,9 +29,9 @@ html {
 }
 
 body {
+  animation: gradient-animation 25s ease infinite;
   background: linear-gradient(-45deg, #512da8, #673ab7, #ff5722, #ff5252, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient-animation 25s ease infinite;
 }
 
 footer {
@@ -70,9 +71,9 @@ footer {
 .dark-mode-button {
   border-radius: 20%;
   box-shadow: 1px 0 7px rgba(0, 0, 0, 0.3);
-  width: 40px;
-  height: 40px;
   margin: 7px;
+  height: 40px;
+  width: 40px;
 }
 
 .dark-mode-button svg { width: 30px; height: 30px; }
@@ -86,10 +87,6 @@ footer {
 .footer-icons {
   fill: #fff;
   transition: fill 0.2s ease-in-out;
-}
-
-.footer-icons :hover {
-
 }
 
 

@@ -1,13 +1,44 @@
-@keyframes links-animation {
+
+@keyframes button-dark-mode-animation {
   0% {
-    transform: translateY(0);
+    background: #f2f2f2;
+    transform: rotate(0deg);
+
+  }
+  30% {
+    transform: translateX(60px) rotate(-10deg);
   }
   50% {
-    transform: translateY(10);
+    background: #1f1f1f;
+    transform: rotate(2deg);
   }
   100% {
-    transform: translateY(0);
+    background: #1f1f1f;
+    transform: rotate(0deg) translateX(0px);
   }
+}
+
+@keyframes button-light-mode-animation {
+  0% {
+    background: #1f1f1f;
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: translateX(60px) rotate(-10deg);
+  }
+  50% {
+    background: #f2f2f2;
+    transform: rotate(2deg);
+  }
+  100% {
+    background: #f2f2f2;
+    transform: rotate(0deg) translateX(0px);
+  }
+}
+
+@keyframes dark-mode-animation {
+  0% { color: #1f1f1f; fill: #1f1f1f; }
+  100% { color: #f1f1f1; fill: #f1f1f1; }
 }
 
 @keyframes gradient-animation {
@@ -22,47 +53,16 @@
   }
 }
 
-@keyframes button-dark-mode-animation {
+@keyframes links-animation {
   0% {
-    transform: rotate(0deg);
-    background: #f2f2f2;
-
-  }
-  30% {
-    transform: translateX(60px) rotate(-10deg);
+    transform: translateY(0);
   }
   50% {
-    transform: rotate(2deg);
-    background: #1f1f1f;
+    transform: translateY(10);
   }
   100% {
-    transform: rotate(0deg) translateX(0px);
-    background: #1f1f1f;
+    transform: translateY(0);
   }
-}
-
-@keyframes button-light-mode-animation {
-  0% {
-    transform: rotate(0deg);
-    background: #1f1f1f;
-
-  }
-  30% {
-    transform: translateX(60px) rotate(-10deg);
-  }
-  50% {
-    transform: rotate(2deg);
-    background: #f2f2f2;
-  }
-  100% {
-    transform: rotate(0deg) translateX(0px);
-    background: #f2f2f2;
-  }
-}
-
-@keyframes dark-mode-animation {
-  0% { color: #1f1f1f; fill: #1f1f1f; }
-  100% { color: #f1f1f1; fill: #f1f1f1; }
 }
 
 @keyframes light-mode-animation {
